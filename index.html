@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Wedding Countdown</title>
+
+<style>
+:root {
+  --cream: #faf6f0;
+  --wine: #6d4c52;
+  --gold: #b8905a;
+  --text: #3d2d2f;
+  --muted: #8a7874;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  background:
+    radial-gradient(circle at top left, #efe1d6, transparent 40%),
+    radial-gradient(circle at bottom right, #f0e7da, transparent 40%),
+    var(--cream);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: var(--text);
+}
+
+/* Main white container */
+.container {
+  width: 100%;
+  max-width: 1000px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #e4d5c5;
+  border-radius: 12px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floral corners */
+.floral-corner {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* Top-left flower */
+.top-left {
+  top: 0;
+  left: 0;
+}
+
+/* Top-right flower */
+.top-right {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+/* Bottom-left flower */
+.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: scaleY(-1);
+}
+
+/* Bottom-right flower */
+.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: scale(-1, -1);
+}
+
+/* Heading */
+.top {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+h1 {
+  color: var(--wine);
+  font-size: 58px;
+  font-weight: 400;
+  margin: 18px 0;
+  overflow-wrap: anywhere;
+}
+
+.sub {
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+/* Couple names */
+.names {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.names input {
+  width: 220px;
+  max-width: 100%;
+}
+
+input {
+  padding: 14px;
+  border: 1px solid #dcc9b5;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.datebox {
+  max-width: 420px;
+  margin: auto;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#date {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+button {
+  margin-top: 18px;
+  background: var(--wine);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  max-width: 100%;
+}
+
+button:hover {
+  background: #553b3f;
+}
+
+/* Countdown timer */
+.timer {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: 35px 0;
+}
+
+.box {
+  background: white;
+  border: 1px solid #e7d8c6;
+  border-radius: 8px;
+  padding: 22px 10px;
+  min-width: 0;
+}
+
+.number {
+  display: block;
+  color: var(--wine);
+  font-size: 40px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.box small {
+  display: block;
+  margin-top: 8px;
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* Wedding details */
+.info {
+  border-top: 1px solid #e8d9c8;
+  padding-top: 20px;
+  color: var(--muted);
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+.info strong {
+  color: var(--wine);
+}
+
+#message {
+  margin-top: 20px;
+  color: var(--wine);
+  font-size: 18px;
+  font-style: italic;
+}
+
+/* Tablet and mobile */
+@media (max-width: 700px) {
+  body {
+    padding: 12px;
+  }
+
+  .container {
+    padding: 85px 18px 85px;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  .top {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  .floral-corner {
+    width: 200px;
+    
+  }
+
+  .timer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .box:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .box {
+    padding: 18px 8px;
+  }
+
+  .number {
+    font-size: 34px;
+  }
+
+  .names input {
+    width: 100%;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+
+  #message {
+    font-size: 16px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 380px) {
+  .container {
+    padding: 75px 12px;
+  }
+
+  .floral-corner {
+    width: 75px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .number {
+    font-size: 29px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Four floral corners -->
+  <img src="images/floral.png"
+       class="floral-corner top-left" alt="">
+
+  <img src="images/floral.png"
+       class="floral-corner top-right" alt="">
+
+  <img src="images/floral.png"
+       class="floral-corner bottom-left" alt="">
+
+  <img src="images/floral.png"
+       class="floral-corner bottom-right" alt="">
+
+        <div style="display:flex; align-items:center; gap:12px; margin:25px auto; max-width:400px; color:#b22222;">
+  <span style="flex:1; height:1px; background:linear-gradient(to right, transparent, #b22222);"></span>
+  <span style="font-size:24px; color:#b27622;">♥</span>
+  <span style="flex:1; height:1px; background:linear-gradient(to left, transparent, #b22222);"></span>
+</div>
+
+ 
+  <div class="top">A Celebration of Love</div>
+
+  <h1 id="title">Our Wedding Day</h1>
+
+  <p class="sub">
+    Every second brings us closer to forever.
+  </p>
+
+  <div class="names">
+    <input id="name1"
+           placeholder="Bride's name"
+           maxlength="60">
+
+    <input id="name2"
+           placeholder="Groom's name"
+           maxlength="60">
+  </div>
+
+  <div class="datebox">
+
+    <label for="date">
+      Select Wedding Date &amp; Time
+    </label>
+
+    <input
+      id="date"
+      type="datetime-local"
+      min="2026-01-01T00:00"
+      max="2100-12-31T23:59"
+    >
+
+    <div class="actions">
+      <button id="start" type="button">
+        Start Countdown
+      </button>
+
+      <button id="share" type="button">
+        Share My Countdown
+      </button>
+    </div>
+
+  </div>
+
+  <div class="timer">
+
+    <div class="box">
+      <span class="number" id="months">0</span>
+      <small>MONTHS</small>
+    </div>
+
+    <div class="box">
+      <span class="number" id="days">0</span>
+      <small>DAYS</small>
+    </div>
+
+    <div class="box">
+      <span class="number" id="hours">00</span>
+      <small>HOURS</small>
+    </div>
+
+    <div class="box">
+      <span class="number" id="minutes">00</span>
+      <small>MINUTES</small>
+    </div>
+
+    <div class="box">
+      <span class="number" id="seconds">00</span>
+      <small>SECONDS</small>
+    </div>
+
+  </div>
+
+  <div class="info">
+    <p>
+      Total Days Remaining:
+      <strong id="totalDays">0</strong>
+    </p>
+
+    <p>
+      Wedding Date:
+      <strong id="displayDate">Not selected</strong>
+    </p>
+  </div>
+
+  <div id="message">
+    Choose your special day to begin.
+  </div>
+
+</div>
+
+<script>
+const name1 = document.getElementById("name1");
+const name2 = document.getElementById("name2");
+const title = document.getElementById("title");
+const dateInput = document.getElementById("date");
+const message = document.getElementById("message");
+
+let timer = null;
+
+/* Update couple names */
+function updateNames() {
+  const a = name1.value.trim();
+  const b = name2.value.trim();
+
+  title.textContent = a && b
+    ? a + " & " + b
+    : a || b || "Our Wedding Day";
+}
+
+name1.addEventListener("input", updateNames);
+name2.addEventListener("input", updateNames);
+
+/* Add calendar months correctly */
+function addMonths(date, amount) {
+  const d = new Date(date);
+  const day = d.getDate();
+
+  d.setDate(1);
+  d.setMonth(d.getMonth() + amount);
+
+  const last = new Date(
+    d.getFullYear(),
+    d.getMonth() + 1,
+    0
+  ).getDate();
+
+  d.setDate(Math.min(day, last));
+
+  return d;
+}
+
+/* Update countdown */
+function updateCountdown() {
+  if (!dateInput.value) return;
+
+  const target = new Date(dateInput.value);
+
+  if (isNaN(target.getTime())) return;
+
+  const now = new Date();
+
+  document.getElementById("displayDate").textContent =
+    target.toLocaleString();
+
+  if (target <= now) {
+    ["months", "days", "hours", "minutes", "seconds"]
+      .forEach(id => {
+        document.getElementById(id).textContent = "0";
+      });
+
+    document.getElementById("totalDays").textContent = "0";
+
+    message.textContent =
+      "Today is your special day! ❤️";
+
+    clearInterval(timer);
+    timer = null;
+
+    return;
+  }
+
+  let months =
+    (target.getFullYear() - now.getFullYear()) * 12 +
+    target.getMonth() - now.getMonth();
+
+  let anchor = addMonths(now, months);
+
+  if (anchor > target) {
+    months--;
+    anchor = addMonths(now, months);
+  }
+
+  const remain = target - anchor;
+
+  const days = Math.floor(remain / 86400000);
+  const hours = Math.floor(
+    (remain % 86400000) / 3600000
+  );
+  const minutes = Math.floor(
+    (remain % 3600000) / 60000
+  );
+  const seconds = Math.floor(
+    (remain % 60000) / 1000
+  );
+
+  document.getElementById("months").textContent = months;
+  document.getElementById("days").textContent = days;
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2, "0");
+
+  document.getElementById("totalDays").textContent =
+    Math.floor((target - now) / 86400000);
+
+  message.textContent = "Forever begins in...";
+}
+
+/* Start countdown */
+function startCountdown() {
+  if (!dateInput.value) {
+    alert("Please select a wedding date and time first.");
+    return false;
+  }
+
+  if (isNaN(new Date(dateInput.value).getTime())) {
+    alert("Please enter a valid wedding date and time.");
+    return false;
+  }
+
+  updateNames();
+
+  clearInterval(timer);
+  updateCountdown();
+
+  if (new Date(dateInput.value) > new Date()) {
+    timer = setInterval(updateCountdown, 1000);
+  }
+
+  return true;
+}
+
+document
+  .getElementById("start")
+  .addEventListener("click", startCountdown);
+
+/* Share countdown link */
+async function shareCountdown() {
+  if (!dateInput.value) {
+    alert("Please select your wedding date and time first.");
+    return;
+  }
+
+  const target = new Date(dateInput.value);
+
+  if (isNaN(target.getTime())) {
+    alert("Please enter a valid wedding date and time.");
+    return;
+  }
+
+  const url = new URL(window.location.href);
+
+  url.search = "";
+  url.hash = "";
+
+  url.searchParams.set("name1", name1.value);
+  url.searchParams.set("name2", name2.value);
+  url.searchParams.set("date", dateInput.value);
+
+  const link = url.toString();
+
+  try {
+    await navigator.clipboard.writeText(link);
+
+    alert(
+      "Your countdown link has been copied! Share it with anyone."
+    );
+  } catch (error) {
+    window.prompt(
+      "Copy your countdown link below:",
+      link
+    );
+  }
+}
+
+document
+  .getElementById("share")
+  .addEventListener("click", shareCountdown);
+
+/* Restore details from a shared link */
+function loadSharedCountdown() {
+  const params = new URLSearchParams(window.location.search);
+  const sharedDate = params.get("date");
+
+  if (params.has("name1")) {
+    name1.value = params.get("name1") || "";
+  }
+
+  if (params.has("name2")) {
+    name2.value = params.get("name2") || "";
+  }
+
+  if (sharedDate) {
+    dateInput.value = sharedDate;
+    startCountdown();
+  } else {
+    updateNames();
+  }
+}
+
+loadSharedCountdown();
+</script>
+
+</body>
+</html>
+
